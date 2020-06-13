@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+		/**
+		*小数处理成百分数不能直接用乘法的方式进行小数的处理
+		*因为在js的数据计算中存在很大的计算精度问题0.14*100 = 14.000000002
+		*切记不能用浮点型计算之后用于等于的计算
+		*浮点型数据的最高精度是17位，多的就会被取消掉（字符串都没办法拼接，因为传值的时候就被截去）
+		*如果转化成科学技术法的形式那么将会有多少位，保留多少位（因为转化成科学计数法的形式可用字符串进行拼接）
+		*@param  Number (nums) {0.00023}
+		*@return  String {0.023%}
+		*/
+		var float = function(nums){
+			let str=''
+			if(nums){
+			    str = nums.toString();
+			}
+			const eNum = str.indexOf("e")
+			if(eNum !== -1){
+				const numEnd = str.substring(eNum+2);
+				const numStart = str.substring(0,eNum)
+				const strAll = numStart.replace(/\./g,'')
+				const strAlls = strAll.padStart(Number(numEnd)+(strAll.length-1),'0')
+				str = `0.${strAlls}`
+			}
+			if(str.indexOf(".") === -1 ){
+				return `0%`
+			}else{
+				const strNum = str.indexOf(".")+1
+				let strNM = str.substring(strNum)
+				switch(strNM.length){
+					case 1:
+						strNM = `${strNM}0%` 
+					break;
+					case 2:
+					if(strNM.substr(0,1) === "0"){
+						strNM = `${strNM.substring(1)}%` 
+					}else{
+						strNM = `${strNM}%` 
+					}
+					break;
+					default:
+					if(strNM.substr(0,1) === "0"){
+						strNM = `${strNM.substr(1,1)}.${strNM.substring(2)}%`
+					}else{
+						strNM = `${strNM.substr(0,2)}.${strNM.substring(2)}%`
+					}
+					break;
+				}
+				return strNM
+			}
+		}
+		console.log(float(0.0000006789123456789123))
+		/**
+		*数字的千分位处理
+		*对于数字的千分位处理的问题
+		*@param Nmuber(nums) {1000.12}
+		*@return String {1,000.12}
+		*/
+		 var abs = function(nums){
+			if(nums && String(nums).includes(".")){
+				const str = String(nums);
+				const subNumber  = String(nums).indexOf(".");
+				const intStr = parseInt(str.substring(0,subNumber),10).toLocaleString()
+				const floatStr = str.substring(subNumber);
+				return `${intStr}${floatStr}`
+			}else if(nums){
+				return nums.toLocaleString()
+			}else{
+				return nums
+			}
+		 }
+		 console.log(abs(132456789))
+		/*判断传入的两个时间点是否一年之内
+		*@param  Date (beginDate ,endDate) { new Date() }
+		*@return Boolean {false, true}
+		*
+		**/
+		 function getPassYearFormatDate(beginDate,endDate) {
+			 if(beginDate && endDate &&  beginDate.getTime()<endDate.getTime()){
+				const date = new Date();
+				date.setDate(date.getDate()+365);
+				const seperator = "-";
+				const year = date.getFullYear();
+				const month = date.getMonth() + 1;
+				const strDate = date.getDate();
+				let monthStr ='';
+				let strDateStr ='';
+				let currentdate ='';
+				if (month >= 1 && month <= 9) {
+					monthStr = "0" + month;
+				}
+				if (strDate >= 0 && strDate <= 9) {
+					strDateStr = "0" + strDate;
+				}
+				if(month >= 10 && strDate <= 9){
+					currentdate = year + seperator + month + seperator + strDateStr;
+				}else if(strDate >= 10 && month <= 9){
+					currentdate = year + seperator + monthStr + seperator + strDate;
+				}else if(strDate >= 10 && month >= 9){
+					currentdate = year + seperator + month + seperator + strDate;
+				}else{
+					currentdate = year + seperator + monthStr + seperator + strDateStr;
+
+				}
+				const currentdateTimesTamp = new Date(currentdate).getTime();
+				const endDateTimesTamp = endDate.getTime();
+				const timeJudgment = currentdateTimesTamp > endDateTimesTamp
+				return timeJudgment
+			 }else{
+				return false
+
+			 }
+		}
+
+
+    </script>
+</body>
+</html>
