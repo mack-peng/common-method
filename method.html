@@ -17,6 +17,9 @@
 		*@return  String {0.023%}
 		*/
 		var float = function(nums){
+			if(nums ===1){
+				return "100%"
+			}
 			let str=''
 			if(nums){
 			    str = nums.toString();
@@ -56,7 +59,7 @@
 				return strNM
 			}
 		}
-		console.log(float(0.0000006789123456789123))
+		console.log(float(0))
 		/**
 		*数字的千分位处理
 		*对于数字的千分位处理的问题
