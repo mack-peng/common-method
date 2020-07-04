@@ -9,12 +9,6 @@
 		// *@return  String {0.023%}
 		// */
 		function float(nums){
-			if(nums ===1){
-				return "100%"
-			}else if(nums>1){
-				alert("转化的百分数有问题")
-				return "转化的百分数有问题"
-			}
 			let str=''
 			if(nums){
 			    str = nums.toString();
@@ -28,26 +22,31 @@
 				str = `0.${strAlls}`
 			}
 			if(str.indexOf(".") === -1 ){
-				return `0%`
+				if(nums===0){
+					return `0%`
+				}else{
+					return `${nums}00%`
+				}
 			}else{
-				const strNum = str.indexOf(".")+1
-				let strNM = str.substring(strNum)
+				const strNum = str.indexOf(".")
+				let strNM = str.substring(strNum+1);
+				let strNMInt = str.substring(0,strNum);
 				switch(strNM.length){
 					case 1:
-						strNM = `${strNM}0%` 
+						strNM = strNMInt>0?`${strNMInt}${strNM}0%` :`${strNM}0%` 
 					break;
 					case 2:
 					if(strNM.substr(0,1) === "0"){
-						strNM = `${strNM.substring(1)}%` 
+						strNM =strNMInt>0?`${strNMInt}0${strNM.substring(1)}%` :`${strNM.substring(1)}%` 
 					}else{
-						strNM = `${strNM}%` 
+						strNM =strNMInt>0?`${strNMInt}${strNM}%` :`${strNM}%` 
 					}
 					break;
 					default:
 					if(strNM.substr(0,1) === "0"){
-						strNM = `${strNM.substr(1,1)}.${strNM.substring(2)}%`
+						strNM = strNMInt>0? `${strNMInt}0${strNM.substr(1,1)}.${strNM.substring(2)}%`:`${strNM.substr(1,1)}.${strNM.substring(2)}%`
 					}else{
-						strNM = `${strNM.substr(0,2)}.${strNM.substring(2)}%`
+						strNM =strNMInt>0? `${strNMInt}0${strNM.substr(0,2)}.${strNM.substring(2)}%`: `${strNM.substr(0,2)}.${strNM.substring(2)}%`
 					}
 					break;
 				}
