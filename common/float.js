@@ -10,28 +10,56 @@
 		// */
 		function float(nums){
 			let str=''
-			if(nums){
+			//如果是字符串就不需要
+			if((nums || nums===0) && Object.prototype.toString.call(nums) ==='[object Number]'){
+				//数字转化成字符串
 			    str = nums.toString();
+			}else{
+				str = nums
 			}
+			//是否是负数
+			let negative = false
+			debugger
+			if(str.indexOf('-') === 0){
+				negative = true
+				str = str.substring(1)
+			}
+			//判断是否是科学技术法
 			const eNum = str.indexOf("e")
-			if(eNum !== -1){
+			if(eNum !== -1  ){
 				const numEnd = str.substring(eNum+2);
 				const numStart = str.substring(0,eNum)
 				const strAll = numStart.replace(/\./g,'')
-				const strAlls = strAll.padStart(Number(numEnd)+(strAll.length-1),'0')
-				str = `0.${strAlls}`
+				//数字过长出现科学技术法
+				//整数
+				if(str.split('').includes('+')){
+					const strAlls = strAll.padEnd(Number(numEnd)+(strAll.length-1),'0')
+					str = `${strAlls}`
+					return `${str}00%`
+				}else{
+					//小数
+					const strAlls = strAll.padStart(Number(numEnd)+(strAll.length-1),'0')
+					str = `0.${strAlls}`
+				}
 			}
+			//判断有没有小数点
 			if(str.indexOf(".") === -1 ){
-				if(nums===0){
+				//整数
+				//0
+				if(Number(nums)===0){
 					return `0%`
 				}else{
 					return `${nums}00%`
 				}
 			}else{
 				const strNum = str.indexOf(".")
+				//小数部分
 				let strNM = str.substring(strNum+1);
+				//整数部分
 				let strNMInt = str.substring(0,strNum);
+				//判断小数的位数
 				switch(strNM.length){
+					//一位后位补齐
 					case 1:
 						strNM = strNMInt>0?`${strNMInt}${strNM}0%` :`${strNM}0%` 
 					break;
@@ -46,11 +74,16 @@
 					if(strNM.substr(0,1) === "0"){
 						strNM = strNMInt>0? `${strNMInt}0${strNM.substr(1,1)}.${strNM.substring(2)}%`:`${strNM.substr(1,1)}.${strNM.substring(2)}%`
 					}else{
-						strNM =strNMInt>0? `${strNMInt}0${strNM.substr(0,2)}.${strNM.substring(2)}%`: `${strNM.substr(0,2)}.${strNM.substring(2)}%`
+						strNM =strNMInt>0? `${strNMInt}${strNM.substr(0,2)}.${strNM.substring(2)}%`: `${strNM.substr(0,2)}.${strNM.substring(2)}%`
 					}
 					break;
 				}
-				return strNM
+				
+				if(negative){
+					return `-${strNM}`
+				}else{
+					return strNM
+				}
 			}
 		}
 
