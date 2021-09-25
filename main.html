@@ -11,10 +11,15 @@
 <body>
     
     <script>
-        console.log(float(1.1))
-        console.log(0.000000345678)
-        console.log(digitalThousandthProcessing(3123.123))
-        console.log(getPassYearFormatDate(new Date(2020-10-12),new Date(2021-10-12)))
+        const arr = [-1.121212111111111,0,1,11111111111111111,0.1111,10.123,-1.01111,"1111",'-1.121212111111111','0','1','11111111111111111','0.1111','10.123','-1.01111',0.00000000000000000001]
+
+        arr.forEach(item =>{
+            console.log(float(item))
+        })
+        
+        // console.log(0.000000345678)
+        // console.log(digitalThousandthProcessing(3123.123))
+        // console.log(getPassYearFormatDate(new Date(2020-10-12),new Date(2021-10-12)))
     </script>
 </body>
 </html>
