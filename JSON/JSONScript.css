@@ -1,0 +1,15 @@
+div{
+    margin: 10px 20px;
+}
+.image_76wenshu{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-image: url(./ACF40D38-17F0-4EE9-8C47-306677FD293A_1_105_c.jpeg);
+}
+.context_JSON{
+    background-color: bisque;
+    width: 300px;
+    word-wrap:break-word;
+}
+

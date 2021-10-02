@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./JSONScript.js"></script>
+    <link rel="stylesheet" href="./JSONScript.css">
+</head>
+<body onload="rowColClick()">
+    <div>
+        <div>
+            <span>
+                作者：
+            </span>
+            <span>
+                76文书
+            </span>
+        </div>
+        <div class="image_76wenshu"> 
+        </div>
+        <div>
+            <div>
+                控制输入框的宽高度
+            </div>
+            <div>
+                <span>rows:</span>
+                <input id="rows" type="text" oninput="value=value.replace(/[^\d]/g,'')" >
+            </div>
+            <div>
+                
+                <span>cols:</span>
+                <input id="cols" type="text" oninput="value=value.replace(/[^\d]/g,'')" >
+            </div>
+        </div>
+        <div>
+            <button onclick="rowColClick()">点击设置输入宽高度</button>
+        </div>
+        <div>应用示例:</div>
+        <div class="context_JSON">
+        {"message":"ok","nu":"367847964498","ischeck":"1","com":"shunfeng","status":"200","condition":"F00","state":"3","data":[{"time":"2020-04-22 13:07:13","context":"查无结果","ftime":"2020-04-22 13:07:13"}]}
+    </div>
+    <div>
+
+        <button id="button">点击转化</button>
+    </div>
+        <textarea id="input" rows="10" cols="30" value='value'></textarea>
+        <div>控制台输出结果</div>
+    </div>
+    <script>
+        let obj = {};
+        let input = document.getElementById('input');
+        let button = document.getElementById("button")
+        eventLister(input,button);
+        
+        let inputRow = document.getElementById('rows');
+        let inputCol = document.getElementById('cols');
+
+        
+    </script>
+    
+</body>
+</html>
