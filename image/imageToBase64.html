@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择图片进行转化Base64</title>
+    <script src="./imageToBase64.js"></script>
+    <link rel="stylesheet" href="./imageToBase64.css">
+</head>
+<body>
+    <div>选择图片进行转化Base64：</div>
+    <!-- 当type 是file是就是选取文件 -->
+    <div>
+        <input id="clickFile" type="file" onchange="preImageFile()">
+    </div>
+    <div>
+        <img id="img" src=""  height="300" alt="图片展示预览区域">
+    </div>
+    <div>转换结果请看控制台</div>
+
+
+</body>
+</html>
