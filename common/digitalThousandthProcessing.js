@@ -4,7 +4,7 @@
 		*@param Nmuber(nums) {1000.12}
 		*@return String {1,000.12}
 		*/
-		function digitalThousandthProcessing(nums){
+		function digitalThousandthProcess(nums){
 			if(nums && String(nums).includes(".")){
 				const str = String(nums);
 				const subNumber  = String(nums).indexOf(".");
