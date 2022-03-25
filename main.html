@@ -1,25 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="./common/float.js"></script>
     <script src="./common/digitalThousandthProcessing.js"></script>
     <script src="./common/timeWithinYear.js"></script>
-</head>
-<body>
-    
+    <script src="./common/comparesContant.js"></script>
+  </head>
+  <body>
     <script>
-        const arr = [-1.121212111111111,0,1,11111111111111111,0.1111,10.123,-1.01111,"1111",'-1.121212111111111','0','1','11111111111111111','0.1111','10.123','-1.01111',0.00000000000000000001]
+      const arr = [
+        -1.121212111111111,
+        0,
+        1,
+        11111111111111111,
+        0.1111,
+        10.123,
+        -1.01111,
+        "1111",
+        "-1.121212111111111",
+        "0",
+        "1",
+        "11111111111111111",
+        "0.1111",
+        "10.123",
+        "-1.01111",
+        0.00000000000000000001,
+      ];
 
-        arr.forEach(item =>{
-            console.log(float(item))
-        })
-        
-        // console.log(0.000000345678)
-        console.log(digitalThousandthProcessing(3123.123))
-        // console.log(getPassYearFormatDate(new Date(2020-10-12),new Date(2021-10-12)))
+      arr.forEach((item) => {
+        console.log(float(item));
+      });
+
+      // console.log(0.000000345678)
+      console.log(digitalThousandthProcess(3123.123));
+
+      console.log(
+        getPassYearFormatDate(
+          new Date(2020 - 10 - 12),
+          new Date(2019 - 12 - 12)
+        )
+      );
+      const keys_1 = {
+        number: 2,
+        nullType: null,
+        undefinedType: undefined,
+        functionType: function () {
+          return "comparesContant";
+        },
+        NaNType: NaN,
+        strange1: new Date(),
+        symbolType: Symbol("symbol"),
+      };
+      const keys_2 = {
+        strange1: new Date("2020-11-12"),
+        nullType: null,
+        number: 24,
+        undefinedType: undefined,
+        functionType: function () {
+          return "comparesContant2";
+        },
+        NaNType: NaN,
+        symbolType: Symbol("symbol"),
+      };
+
+      console.log(comparesContant(keys_1, keys_2));
     </script>
-</body>
+  </body>
 </html>
