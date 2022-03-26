@@ -1,0 +1,22 @@
+{
+  "name": "76wenshu",
+  "version": "0.0.3",
+  "description": "piblic use",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/76wenshu/commonMethod.git"
+  },
+  "keywords": [
+    "method"
+  ],
+  "author": "76wenshu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/76wenshu/commonMethod/issues"
+  },
+  "homepage": "https://github.com/76wenshu/commonMethod#readme"
+}
